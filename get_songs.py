@@ -16,7 +16,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
 def get_songs(request_url, uuid, cb):
 
   if validate_spotify_url(request_url):
-    print(request_url)
+
     # parse url
     request_type, request_id = parse_spotify_url(request_url)
     
