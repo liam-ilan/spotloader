@@ -17,6 +17,13 @@ def get_songs(request_url, uuid, cb):
 
   if validate_spotify_url(request_url):
 
+    # create destenation folders if not exist
+    if not os.path.isdir('playlists'):
+      os.mkdir('./playlists')
+    
+    if not os.path.isdir('archive'):
+      os.mkdir('archive')
+
     # parse url
     request_type, request_id = parse_spotify_url(request_url)
     
