@@ -1,0 +1,99 @@
+@font-face {
+  font-family: montserrat;
+  src: url(../fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+* {
+  font-family: montserrat;
+}
+
+body {
+  background-color: #F5F5F8;
+}
+
+#title {
+  margin: 30px 30px 10px 30px;
+  font-size: 40pt;
+  color: #4D2D52;
+}
+
+#subtitle {
+  margin: 0 30px;
+  font-size: 15pt;
+  color: #4D2D52;
+  font-weight: thin;
+}
+
+#container {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute; 
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#link-input {
+  margin: 5px;
+  padding: 10px;
+  width: 50%;
+  border: 2px solid #4D2D52;
+  border-radius: 1000px;
+} 
+
+#download-button {
+  background-color: #4D2D52;
+  color: white;
+  border: 0px;
+  padding: 10px;
+  border-radius: 1000px;
+  margin: 10px;
+}
+
+#download-button:hover {
+  transform: scale(1.05)
+}
+
+#loading-icon {
+  display: inline-block;
+  animation: rotation 2s infinite linear;
+}
+
+#loading {
+  padding: 10px;
+  margin: 5px;
+  display: none;
+}
+
+#title-box {
+  display: inline-block;
+}
+
+#links {
+  margin: 70px 30px 0px 30px;
+  float: right;
+}
+
+.link {
+  margin-left: 30px;
+  top: 50pt; 
+  color: #4D2D52;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 15pt;
+}
+
+.link:hover {
+  color: #F08CAE;
+}
