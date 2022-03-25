@@ -1,8 +1,9 @@
-import shutil
 import os
 import uuid
+import shutil
+import subprocess
 from flask import Flask, request, send_file
-from get_songs import get_songs
+from spotify_dl.spotify import validate_spotify_url
 
 app = Flask(__name__, static_folder='static', static_url_path='')
 
@@ -11,24 +12,30 @@ app = Flask(__name__, static_folder='static', static_url_path='')
 def homepage():
   return app.send_static_file('index.html')
 
-# api - get songs given link
+# get songs given link
 @app.route('/api/v1/getsongs', methods=['POST'])
 def get_songs_api():
 
-  # callback when download is finished
-  def cb(file_uuid):
+  # validate url
+  if validate_spotify_url(request.json['link']):
 
-    # get file
-    res = send_file('./archive/' + file_uuid + '.zip')
+    # create uuid
+    file_uuid = str(uuid.uuid4())
 
-    # delete file
+    # call get_songs as subprocess
+    subprocess.run(['python3', 'get_songs.py', request.json['link'], file_uuid])
+
+    # get zipped file and setup as send_file
+    res = send_file('archive/' + file_uuid + '.zip')
+
+    # delete zip file
     os.remove('./archive/' + file_uuid + '.zip')
 
-    # return (will be sent to client)
+    # send zip to client
     return res
 
-  # returns whatever callback returns, input validated in function
-  return get_songs(request.json['link'], str(uuid.uuid4()), cb)
+  # return error if url not vaildated
+  return {'status': 'url invalid'}
 
 # init
 app.run(host='0.0.0.0')
