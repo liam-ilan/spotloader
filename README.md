@@ -19,9 +19,9 @@ Clone this repo
 git clone https://github.com/liam-ilan/spotloader.git
 ```
 
-Install packages
+SpotLoader uses poetry to install packages
 ```
-pip install -r requirements.txt
+poetry install
 ``` 
 
 Create a .env file with the following contents
@@ -33,7 +33,7 @@ Credentials can be obtained from the Spotify developer dashboard.
 
 Start up the web server
 ```
-python main.py
+poetry run python main.py
 ```
 
 Happy developing!
